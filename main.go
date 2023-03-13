@@ -9,5 +9,6 @@ func main() {
     fmt.Println("Hello, World!")
 
     monitors.Test()
-    monitors.ParaTest()
+    monitors.GetHostDetails()
+    monitors.GetTemp()
 }
