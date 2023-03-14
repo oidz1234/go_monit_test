@@ -11,4 +11,6 @@ func main() {
     monitors.Test()
     monitors.GetHostDetails()
     monitors.GetTemp()
+    monitors.GetLoad()
 }
+

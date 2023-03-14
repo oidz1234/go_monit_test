@@ -15,7 +15,7 @@ import (
 // Get preferred outbound ip of this machine
 // does not make any connections
 // https://stackoverflow.com/questions/23558425/how-do-i-get-the-local-ip-address-in-go
-func GetOutboundIP() net.IP {
+func getOutboundIP() net.IP {
     conn, err := net.Dial("udp", "8.8.8.8:80")
     if err != nil {
         log.Fatal(err)
@@ -46,5 +46,5 @@ func GetHostDetails() {
     fmt.Printf("Uptime: %v\n", info.Uptime)
     fmt.Printf("OS: %v\n", info.OS)
     fmt.Printf("Platform: %v\n", info.Platform)
-    fmt.Printf("IP: %v\n", GetOutboundIP())
+    fmt.Printf("IP: %v\n", getOutboundIP())
 }
