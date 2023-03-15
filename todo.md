@@ -37,3 +37,7 @@ Keep an eye on this thread to fix things:
 
 
 * one easy step install command
+
+* Name ideas
+    * Inspector Puffin
+    * Monke Monitor/ Monitor Monke(y)
