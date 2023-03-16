@@ -24,6 +24,7 @@ Keep an eye on this thread to fix things:
     * Mem used
     * disk used
         * Sensible defualts
+        * Could get the X biggest disks and use those as defalts for now
     * i/o
     * Heartbeat (last checked in datetime)
         * if > X alert (for frontend todo)
