@@ -23,6 +23,7 @@ Keep an eye on this thread to fix things:
     * Network/interface traffic
     * Mem used
     * disk used
+        * Sensible defualts
     * i/o
     * Heartbeat (last checked in datetime)
         * if > X alert (for frontend todo)
@@ -41,3 +42,7 @@ Keep an eye on this thread to fix things:
 * Name ideas
     * Inspector Puffin
     * Monke Monitor/ Monitor Monke(y)
+
+* Ability to configure the following on web ui
+    * What disks to monitor 
+    * What services to monitor
