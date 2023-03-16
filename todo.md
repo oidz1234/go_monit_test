@@ -41,3 +41,8 @@ Keep an eye on this thread to fix things:
 * Name ideas
     * Inspector Puffin
     * Monke Monitor/ Monitor Monke(y)
+
+* morpheus api 
+    * For agent error repoerting/monitoring
+
+
