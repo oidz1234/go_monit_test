@@ -9,6 +9,20 @@ import (
 )
 
 
+func GetDefaultDisks(amount int) {
+    // get list of all disks ✅
+    // figure out total space of all disks
+    // figure out the top X by space
+    // return them
+    parts, err := disk.Partitions(false)
+    if err != nil {
+        fmt.Println(err)
+    }
+    fmt.Println(parts)
+
+}
+
+
 
 func GetDiskUsage(diskPath string) float64 {
 

@@ -22,5 +22,6 @@ func main() {
         fmt.Printf("%v has used: ", disk)
         fmt.Println(monitors.GetDiskUsage(disk))
     }
+    monitors.GetDefaultDisks(2)
 }
 

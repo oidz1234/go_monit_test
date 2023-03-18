@@ -29,6 +29,9 @@ Keep an eye on this thread to fix things:
     * Heartbeat (last checked in datetime)
         * if > X alert (for frontend todo)
     
+* Default disks
+    * Get default disks (top 2(?) by useage)
+    * Can configure these on frontend eventually
    
 
 
