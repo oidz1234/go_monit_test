@@ -14,23 +14,25 @@ Keep an eye on this thread to fix things:
 
 
 * Add in the following:
-    * Hostname
-    * Uptime
-    * Temp
+    * Hostname ✅
+    * Uptime ✅
+    * Temp ✅
     * who is logged in (on hold)
     * services running
-    * load
+    * load ✅
     * Network/interface traffic
-    * Mem used
-    * disk used
+    * Mem used  ✅
+    * disk used ✅ 
         * Sensible defualts
         * Could get the X biggest disks and use those as defalts for now
     * i/o
-    * Heartbeat (last checked in datetime)
+    * Heartbeat (last checked in datetime) ✅
         * if > X alert (for frontend todo)
     
 * Default disks
     * Get default disks (top 2(?) by useage)
+        * DOn't do for now, take to long (use / and home for linux and C for
+          windows I guess)
     * Can configure these on frontend eventually
    
 
