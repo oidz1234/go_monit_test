@@ -2,7 +2,7 @@ package monitors
 
 import (
 	"os/exec"
-	"strings"
+    "strings"
 )
 
 // TODO:
@@ -13,19 +13,10 @@ import (
 func ServiceCheck(serviceName string) string {
 	// Set the name of the service to check
 	// Execute the `systemctl` command to get the service status
-	cmd := exec.Command("systemctl", "status", serviceName)
+	cmd := exec.Command("systemctl", "is-active", serviceName)
 	output, _ := cmd.CombinedOutput() // we don't error check here it fails if command returns not active
-    //fmt.Println(string(output))
+    status := strings.TrimSuffix(string(output), "\n")
 
-	// Parse the output to determine the service status
-	status := "unknown"
-	if strings.Contains(string(output), "Active: active") {
-		status = "running"
-	} else if strings.Contains(string(output), "Active: failed") {
-		status = "failed"
-	} else if strings.Contains(string(output), "Active: inactive") {
-		status = "inactive"
-	}
 
 	// Print the service status
 	//fmt.Printf("%s service status: %s\n", serviceName, status)

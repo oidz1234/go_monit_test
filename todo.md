@@ -18,7 +18,7 @@ Keep an eye on this thread to fix things:
     * Uptime ✅
     * Temp ✅
     * who is logged in (on hold)
-    * services running
+    * services running ✅
     * load ✅
     * Network/interface traffic ✅
     * Mem used  ✅
