@@ -9,6 +9,7 @@ import (
 func main() {
 
     defaultDisks := []string{"/", "/home"}
+    defaultServices := []string{"sshd", "httpd"} // liunx defaults again can be configured
 
 
     interval := 1 // seconds to sleep between sending can be user configured evnetually
@@ -37,6 +38,10 @@ func main() {
         // so will do it api side for now
         fmt.Printf("Total uploaded %v\n", up)
         fmt.Printf("Total download %v\n", down)
+        for _, service := range defaultServices {
+            fmt.Printf("Service %v %v\n", service, monitors.ServiceCheck(service))
+        }
+
 
 
 
