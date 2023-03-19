@@ -20,7 +20,7 @@ Keep an eye on this thread to fix things:
     * who is logged in (on hold)
     * services running
     * load ✅
-    * Network/interface traffic
+    * Network/interface traffic ✅
     * Mem used  ✅
     * disk used ✅ 
         * Sensible defualts
@@ -56,3 +56,6 @@ Keep an eye on this thread to fix things:
 * Ability to configure the following on web ui
     * What disks to monitor 
     * What services to monitor
+
+* all this configration stored sepratly and checked on first run and after
+  every run
