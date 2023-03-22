@@ -25,9 +25,11 @@ Keep an eye on this thread to fix things:
     * disk used ✅ 
         * Sensible defualts
         * Could get the X biggest disks and use those as defalts for now
-    * i/o
+    * i/o ✅
     * Heartbeat (last checked in datetime) ✅
         * if > X alert (for frontend todo)
+    * disk read
+    * disk write
     
 * Default disks
     * Get default disks (top 2(?) by useage)

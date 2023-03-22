@@ -41,6 +41,13 @@ func main() {
         for _, service := range defaultServices {
             fmt.Printf("Service %v %v\n", service, monitors.ServiceCheck(service))
         }
+        // TODO:
+        // Only if not windows (as no IOwait)
+        // TODO: 
+        // Find equivlent on windows
+        // TODO:
+        // IMplement correctly lol
+        //monitors.GetIOWait()
 
 
 
