@@ -40,7 +40,7 @@ Keep an eye on this thread to fix things:
 
 
 * Create struct with all the data we will pass to the api ✅
-* Convert into json
+* Convert into json ✅
 * Pass that data to the api
 
 
