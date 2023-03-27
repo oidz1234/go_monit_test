@@ -13,7 +13,7 @@ type TemperatureReading struct {
     Temperature  float64
 }
 
-func GetTemp() {
+func GetTemp() []TemperatureReading{
 
  	temp, err := host.SensorsTemperatures()
 	if err != nil {
@@ -28,7 +28,8 @@ func GetTemp() {
 
         
     }
-    fmt.Println(readings)
+    return readings
+    //fmt.Printf("type of temp is %t\n", readings)
     // Example on how to get specifc value (loop over it durrr)
     //fmt.Println(readings[0].SensorKey)
     //fmt.Println(readings[0].Temperature)

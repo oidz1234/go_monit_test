@@ -24,10 +24,11 @@ func getOutboundIP() net.IP {
 
     localAddr := conn.LocalAddr().(*net.UDPAddr)
 
+    
     return localAddr.IP
 }
 
-func GetHostDetails() {
+func GetHostDetails() (string, string, uint64, string, string, string) {
 
     /* What's in info
     {"hostname":"terra2","uptime":179922,"bootTime":1678566518,"procs":376,"os":"linux","platform":"fedora","platformFamily":"fedora","platformVersion":"37","kernelVersion":"6.1.11-200.fc37.x86_64","kernelArch":"x86_64","virtualizationSystem":"kvm","virtualizationRole":"host","hostId":"d49bd21c-0b92-4c1f-adc3-5e65b6a31c10"}
@@ -38,13 +39,18 @@ func GetHostDetails() {
     }
     //fmt.Println(info)
 
+    ip := getOutboundIP()
+    ipstring := ip.String()
     
 
 
+    return info.HostID, info.Hostname, info.Uptime, info.OS, info.Platform,ipstring
+    /*
     fmt.Printf("HostID: %v\n", info.HostID)
     fmt.Printf("Hostname: %v\n", info.Hostname)
     fmt.Printf("Uptime: %v\n", info.Uptime)
     fmt.Printf("OS: %v\n", info.OS)
     fmt.Printf("Platform: %v\n", info.Platform)
     fmt.Printf("IP: %v\n", getOutboundIP())
+    */
 }
