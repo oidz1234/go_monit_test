@@ -4,25 +4,26 @@ import (
     "fmt"
      "go_monitor/monitors"
      "time"
+     "encoding/json"
 )
 
 
 
 type mesure struct {
-    heartbeat int64
-    hostid string
-    hostname string
-    uptime uint64
-    os string
-    platform string
-    ip string
-    temp  []monitors.TemperatureReading
-    load  map[string]float64
-    disks map[string]float64
-    memory float64
-    upload uint64
-    download uint64
-    services map[string]string
+    Heartbeat int64
+    Hostid string
+    Hostname string
+    Uptime uint64
+    Os string
+    Platform string
+    Ip string
+    Temp  []monitors.TemperatureReading
+    Load  map[string]float64
+    Disks map[string]float64
+    Memory float64
+    Upload uint64
+    Download uint64
+    Services map[string]string
 
 }
 
@@ -47,22 +48,22 @@ func main() {
 
         m := mesure{}
         heartbeat := time.Now().Unix()
-        m.heartbeat = heartbeat
+        m.Heartbeat = heartbeat
         //fmt.Printf("Heartbeat (unix)time %v\n", time.Now().Unix())
 
-        m.hostid, m.hostname, m.uptime, m.os, m.platform, m.ip = monitors.GetHostDetails()
+        m.Hostid, m.Hostname, m.Uptime, m.Os, m.Platform, m.Ip = monitors.GetHostDetails()
         // for some reason canne do this directly
         //temp := monitors.GetTemp()
-        m.temp = monitors.GetTemp()
+        m.Temp = monitors.GetTemp()
 
-        m.load = monitors.GetLoad(loadmap)
+        m.Load = monitors.GetLoad(loadmap)
 
         for _, disk := range defaultDisks {
             diskmap[disk] = monitors.GetDiskUsage(disk)
         }
-        m.disks = diskmap
-        m.memory = monitors.GetMem()
-        m.upload, m.download = monitors.GetNetStats()
+        m.Disks = diskmap
+        m.Memory = monitors.GetMem()
+        m.Upload, m.Download = monitors.GetNetStats()
         // TODO:
         // should do the caculation (new up - old up)
         // to get amount sent in given timeframe
@@ -73,7 +74,7 @@ func main() {
             servicemap[service] = monitors.ServiceCheck(service)
 
         }
-        m.services = servicemap
+        m.Services = servicemap
         // TODO:
         // Only if not windows (as no IOwait)
         // TODO: 
@@ -82,8 +83,14 @@ func main() {
         // IMplement correctly lol
         //monitors.GetIOWait()
 
-        fmt.Printf("%+v\n", m)
 
+
+        jsonBytes, err := json.Marshal(m)
+
+        if err != nil {
+            panic(err)
+        }
+        fmt.Println(string(jsonBytes))
 
 
         time.Sleep(time.Duration(interval) * time.Second)
