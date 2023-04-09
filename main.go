@@ -5,6 +5,8 @@ import (
      "go_monitor/monitors"
      "time"
      "encoding/json"
+     "net/http"
+     "bytes"
 )
 
 
@@ -30,6 +32,13 @@ type mesure struct {
 
 func main() {
 
+    token := "776fa4bfecb1ba0edeae6300677d9f72b304bf9b"
+    authHeader := "token " + token
+    endpoint := "http://localhost:8000/api/dump/"
+
+    client := &http.Client{}
+
+
     defaultDisks := []string{"/", "/home"}
     defaultServices := []string{"sshd", "httpd"} // liunx defaults again can be configured
 
@@ -37,7 +46,7 @@ func main() {
     
 
 
-    interval := 1 // seconds to sleep between sending can be user configured evnetually
+    interval := 15// seconds to sleep between sending can be user configured evnetually
 
 
     for {
@@ -91,6 +100,28 @@ func main() {
             panic(err)
         }
         fmt.Println(string(jsonBytes))
+
+        req, err := http.NewRequest("POST", endpoint, bytes.NewBuffer(jsonBytes))
+        req.Header.Set("Content-Type", "application/json")
+        req.Header.Set("Content-Type", "application/json")
+        req.Header.Set("Authorization", authHeader)
+
+        resp, err := client.Do(req)
+        if err != nil {
+            panic(err)
+        }
+        defer resp.Body.Close()
+
+        // Read the response body
+        var responseMap map[string]interface{}
+        err = json.NewDecoder(resp.Body).Decode(&responseMap)
+        if err != nil {
+            panic(err)
+        }
+
+        // Do something with the response data
+        fmt.Println(responseMap)
+
 
 
         time.Sleep(time.Duration(interval) * time.Second)
