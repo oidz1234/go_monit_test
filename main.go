@@ -11,6 +11,11 @@ import (
 
 
 
+type Custom struct {
+    Disks []string
+    Services []string
+}
+
 type mesure struct {
     Heartbeat int64
     Hostid string
@@ -32,13 +37,17 @@ type mesure struct {
 
 func main() {
 
-    token := "e44fb1dd838b52a7191372746482145ef36b8e15"
+    //token := "b4cb8ca211897248be354ce5df0a75607ce8113c"
+    token := "2777e820ed347af37dc7d066d9169a30c127baa3"
     authHeader := "token " + token
-    endpoint := "http://localhost:8000/api/dump/"
+    endpoint := "http://localhost:8000/api/update/"
 
     client := &http.Client{}
 
 
+    // TODO:
+    // these should be check on boot from the "config" api 
+    // this api does not yet exist
     defaultDisks := []string{"/", "/home"}
     defaultServices := []string{"sshd", "httpd"} // liunx defaults again can be configured
 
@@ -54,6 +63,9 @@ func main() {
         loadmap := make(map[string]float64)
         diskmap := make(map[string]float64)
         servicemap := make(map[string]string)
+
+        
+        
 
         m := mesure{}
         heartbeat := time.Now().Unix()
@@ -109,18 +121,35 @@ func main() {
         resp, err := client.Do(req)
         if err != nil {
             panic(err)
+            // TODO: if panic here, just sleep and try again (if api serv is down)
         }
         defer resp.Body.Close()
 
+
+        /*
         // Read the response body
         var responseMap map[string]interface{}
         err = json.NewDecoder(resp.Body).Decode(&responseMap)
         if err != nil {
             panic(err)
         }
+        */
 
-        // Do something with the response data
-        fmt.Println(responseMap)
+        var custom Custom
+        err = json.NewDecoder(resp.Body).Decode(&custom)
+        if err != nil {
+            panic(err)
+        }
+        if custom.Disks != nil {
+            defaultDisks = custom.Disks
+        }
+        if custom.Services != nil {
+            defaultServices = custom.Services
+        }
+
+        fmt.Println("ran succ")
+
+
 
 
 
