@@ -32,7 +32,7 @@ type mesure struct {
 
 func main() {
 
-    token := "776fa4bfecb1ba0edeae6300677d9f72b304bf9b"
+    token := "e44fb1dd838b52a7191372746482145ef36b8e15"
     authHeader := "token " + token
     endpoint := "http://localhost:8000/api/dump/"
 
