@@ -30,9 +30,12 @@ type mesure struct {
     Memory float64
     Upload uint64
     Download uint64
+    UploadInterval uint64
+    DownloadInterval uint64
     Services map[string]string
 
 }
+
 
 
 func main() {
@@ -55,8 +58,9 @@ func main() {
     
 
 
-    interval := 15// seconds to sleep between sending can be user configured evnetually
+    interval := 1// seconds to sleep between sending can be user configured evnetually
 
+    var oldUpload, oldDownload uint64 = 0, 0
 
     for {
 
@@ -64,7 +68,6 @@ func main() {
         diskmap := make(map[string]float64)
         servicemap := make(map[string]string)
 
-        
         
 
         m := mesure{}
@@ -90,6 +93,10 @@ func main() {
         // to get amount sent in given timeframe
         // but that does not want to work
         // so will do it api side for now
+        m.UploadInterval = m.Upload - oldUpload
+        m.DownloadInterval = m.Download - oldDownload
+        fmt.Println(m.UploadInterval)
+        fmt.Println(m.DownloadInterval)
         for _, service := range defaultServices {
             //fmt.Printf("Service %v %v\n", service, monitors.ServiceCheck(service))
             servicemap[service] = monitors.ServiceCheck(service)
@@ -149,6 +156,8 @@ func main() {
 
         fmt.Println("ran succ")
 
+        oldUpload = m.Upload
+        oldDownload = m.Download
 
 
 
