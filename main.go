@@ -3,10 +3,12 @@ package main
 import (
     "fmt"
      "go_monitor/monitors"
+     "go_monitor/helpers"
      "time"
      "encoding/json"
      "net/http"
      "bytes"
+     //["log/syslog"
 )
 
 
@@ -36,9 +38,31 @@ type mesure struct {
 
 }
 
+func log(to_log error) {
+    fmt.Println(to_log)
+    /*
+    DEBUG := true
+    syslog, err := syslog.New(syslog.LOG_ERR, "monit")
+    if err != nil {
+        fmt.Println("Unable to connect to syslog daemon")
+    }
+    defer syslog.Close()
+
+    if DEBUG == true {
+        fmt.Println(to_log)
+    } else {
+        syslog.Err(to_log.Error())
+    }
+    */
+}
+        
+    
 
 
 func main() {
+
+    // false will log to syslog, true will print to console
+
 
     //token := "b4cb8ca211897248be354ce5df0a75607ce8113c"
     token := "2777e820ed347af37dc7d066d9169a30c127baa3"
@@ -62,11 +86,16 @@ func main() {
 
     var oldUpload, oldDownload uint64 = 0, 0
 
+    if helpers.CheckEndpoint(endpoint) == true {
+        fmt.Println("the endpoint is there MASHALLAH BROTHER")
+    }
+
     for {
 
         loadmap := make(map[string]float64)
         diskmap := make(map[string]float64)
         servicemap := make(map[string]string)
+
 
         
 
@@ -95,8 +124,6 @@ func main() {
         // so will do it api side for now
         m.UploadInterval = m.Upload - oldUpload
         m.DownloadInterval = m.Download - oldDownload
-        fmt.Println(m.UploadInterval)
-        fmt.Println(m.DownloadInterval)
         for _, service := range defaultServices {
             //fmt.Printf("Service %v %v\n", service, monitors.ServiceCheck(service))
             servicemap[service] = monitors.ServiceCheck(service)
@@ -116,7 +143,7 @@ func main() {
         jsonBytes, err := json.Marshal(m)
 
         if err != nil {
-            panic(err)
+            log(err)
         }
         fmt.Println(string(jsonBytes))
 
@@ -127,7 +154,7 @@ func main() {
 
         resp, err := client.Do(req)
         if err != nil {
-            panic(err)
+            log(err)
             // TODO: if panic here, just sleep and try again (if api serv is down)
         }
         defer resp.Body.Close()
@@ -145,7 +172,7 @@ func main() {
         var custom Custom
         err = json.NewDecoder(resp.Body).Decode(&custom)
         if err != nil {
-            panic(err)
+            log(err)
         }
         if custom.Disks != nil {
             defaultDisks = custom.Disks

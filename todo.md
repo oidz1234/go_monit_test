@@ -71,3 +71,8 @@ Keep an eye on this thread to fix things:
 * Wrap the core loop in a try catch ting incase backend is broken 
     * ORRRRR catch error and handle them instead of panic
 * Logging proper (a bit, just connection stuff)
+
+
+# Post launch
+
+* goroutines
