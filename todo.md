@@ -46,6 +46,8 @@ Keep an eye on this thread to fix things:
 
 
 
+
+
 * one easy step install command
 
 * Name ideas
@@ -62,3 +64,10 @@ Keep an eye on this thread to fix things:
 
 * all this configration stored sepratly and checked on first run and after
   every run
+
+# b4 launch
+
+* get the net stuff working lol (much easier to do on agent) ✅
+* Wrap the core loop in a try catch ting incase backend is broken 
+    * ORRRRR catch error and handle them instead of panic
+* Logging proper (a bit, just connection stuff)
