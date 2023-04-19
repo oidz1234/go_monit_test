@@ -68,9 +68,10 @@ Keep an eye on this thread to fix things:
 # b4 launch
 
 * get the net stuff working lol (much easier to do on agent) ✅
-* Wrap the core loop in a try catch ting incase backend is broken 
-    * ORRRRR catch error and handle them instead of panic
+* Wrap the core loop in a try catch ting incase backend is broken  ✅
+    * ORRRRR catch error and handle them instead of panic 
 * Logging proper (a bit, just connection stuff)
+* SystemD service (make sure it auto restart)
 
 
 # Post launch
