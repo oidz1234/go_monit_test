@@ -54,6 +54,8 @@ func GetDiskUsage(diskPath string) float64 {
     diskStat, err := disk.Usage(diskPath)
     if err != nil {
         fmt.Println(err)
+        // we dont' want this to crash if we don't have a disk so we just return 0
+        return 0.0
     }
     return diskStat.UsedPercent
 }
