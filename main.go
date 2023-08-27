@@ -8,6 +8,7 @@ import (
      "encoding/json"
      "net/http"
      "bytes"
+     "os"
      //["log/syslog"
 )
 
@@ -65,7 +66,10 @@ func main() {
 
 
     //token := "b4cb8ca211897248be354ce5df0a75607ce8113c"
-    token := "2777e820ed347af37dc7d066d9169a30c127baa3"
+    //token := "2777e820ed347af37dc7d066d9169a30c127baa3"
+    //token := "41086daf768592ee8e7aa5d9b24b8ff025c958b3"
+    //token := "b4cb8ca211897248be354ce5df0a75607ce8113c"
+    token := os.Args[1]
     authHeader := "token " + token
     endpoint := "http://localhost:8000/api/update/"
 
@@ -82,12 +86,12 @@ func main() {
     
 
 
-    interval := 1// seconds to sleep between sending can be user configured evnetually
+    interval := 15// seconds to sleep between sending can be user configured evnetually
 
     var oldUpload, oldDownload uint64 = 0, 0
 
     if helpers.CheckEndpoint(endpoint) == true {
-        fmt.Println("the endpoint is there MASHALLAH BROTHER")
+        fmt.Println("the endpoint is alive")
     }
 
     for {
@@ -105,6 +109,8 @@ func main() {
         //fmt.Printf("Heartbeat (unix)time %v\n", time.Now().Unix())
 
         m.Hostid, m.Hostname, m.Uptime, m.Os, m.Platform, m.Ip = monitors.GetHostDetails()
+        m.Hostname = "GURG"
+        m.Hostid = "111-grug-111"
         // for some reason canne do this directly
         //temp := monitors.GetTemp()
         m.Temp = monitors.GetTemp()
@@ -181,7 +187,7 @@ func main() {
             defaultServices = custom.Services
         }
 
-        fmt.Println("ran succ")
+        fmt.Println("ran successful")
 
         oldUpload = m.Upload
         oldDownload = m.Download
