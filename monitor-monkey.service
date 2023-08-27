@@ -1,0 +1,11 @@
+[Unit]
+Description=Monitor Monkey Agent
+After=network.target
+
+[Service]
+ExecStart=/opt/monitormonkey/monkey-monitor-agent
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
