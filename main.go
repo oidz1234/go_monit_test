@@ -65,13 +65,9 @@ func main() {
     // false will log to syslog, true will print to console
 
 
-    //token := "b4cb8ca211897248be354ce5df0a75607ce8113c"
-    //token := "2777e820ed347af37dc7d066d9169a30c127baa3"
-    //token := "41086daf768592ee8e7aa5d9b24b8ff025c958b3"
-    //token := "b4cb8ca211897248be354ce5df0a75607ce8113c"
     token := os.Args[1]
     authHeader := "token " + token
-    endpoint := "http://localhost:8000/api/update/"
+    endpoint := "http://192.168.1.126:8000/api/update/"
 
     client := &http.Client{}
 
