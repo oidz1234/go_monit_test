@@ -1,7 +1,8 @@
 #!/bin/bash
 
 
-api_key=$1
+# now set in env
+#api_key=$api_key
 deploy_location="/opt/monitor-monkey"
 agent_location="https://github.com/oidz1234/go_monit_test/raw/master/monitor-monkey-agent"
 agent="/opt/monitor-monkey/monitor-monkey-agent"
