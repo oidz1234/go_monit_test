@@ -105,8 +105,6 @@ func main() {
         //fmt.Printf("Heartbeat (unix)time %v\n", time.Now().Unix())
 
         m.Hostid, m.Hostname, m.Uptime, m.Os, m.Platform, m.Ip = monitors.GetHostDetails()
-        m.Hostname = "GURG"
-        m.Hostid = "111-grug-111"
         // for some reason canne do this directly
         //temp := monitors.GetTemp()
         m.Temp = monitors.GetTemp()
