@@ -27,7 +27,7 @@ RestartSec=5s
 WantedBy=default.target
 "
 
-echo "$unit_content" | tee "$unit_file" > /dev/null
+echo "$unit_content" | sudo tee "$unit_file" > /dev/null
 systemctl daemon-reload
 systemctl start "$unit_name"
 
