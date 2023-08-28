@@ -67,7 +67,7 @@ func main() {
 
     token := os.Args[1]
     authHeader := "token " + token
-    endpoint := "http://192.168.1.126:8000/api/update/"
+    endpoint := "http://51.210.104.170:8000/api/update/"
 
     client := &http.Client{}
 
