@@ -82,7 +82,7 @@ func main() {
     
 
 
-    interval := 15// seconds to sleep between sending can be user configured evnetually
+    interval := 5// seconds to sleep between sending can be user configured evnetually
 
     var oldUpload, oldDownload uint64 = 0, 0
 
